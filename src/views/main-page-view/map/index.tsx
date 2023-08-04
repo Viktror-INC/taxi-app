@@ -17,6 +17,9 @@ const Map: React.FC<IProps> = (props) => {
     setSecondPosition,
     routeCoordinates,
     setRouteCoordinates,
+    setTotalDistance,
+    setRouteInstructions,
+    cleanUp,
   } = props;
 
   return (
@@ -39,6 +42,9 @@ const Map: React.FC<IProps> = (props) => {
           routeCoordinates={routeCoordinates}
           setSecondPosition={setSecondPosition}
           setRouteCoordinates={setRouteCoordinates}
+          setTotalDistance={setTotalDistance}
+          setRouteInstructions={setRouteInstructions}
+          cleanUp={cleanUp}
         />
       </MapContainer>
     </MapMainWrap>

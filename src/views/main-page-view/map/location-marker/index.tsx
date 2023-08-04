@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect } from "react";
 import L, { LatLng } from "leaflet";
 import { useMap, useMapEvents } from "react-leaflet";
 import { Marker, Popup, Polyline } from "react-leaflet";
@@ -11,12 +10,19 @@ export interface ILocationMarker {
   secondPosition: LatLng | null;
   setSecondPosition: (latlng: LatLng) => void;
   setRouteCoordinates: (latlng: LatLng[]) => void;
-
+  setTotalDistance: (distance: number) => void;
   routeCoordinates: LatLng[] | [];
+  setRouteInstructions: (instructions: string[]) => void;
+  cleanUp: () => void;
 }
 
 interface IOpenRouteData {
-  features: { geometry: { coordinates: number[][] } }[];
+  features: {
+    geometry: { coordinates: number[][] };
+    properties: {
+      segments: { distance: number; steps: { instruction: string }[] }[];
+    };
+  }[];
 }
 
 const LocationMarker: React.FC<ILocationMarker> = (props) => {
@@ -27,6 +33,9 @@ const LocationMarker: React.FC<ILocationMarker> = (props) => {
     setSecondPosition,
     routeCoordinates,
     setRouteCoordinates,
+    setTotalDistance,
+    setRouteInstructions,
+    cleanUp,
   } = props;
 
   const map = useMap();
@@ -59,17 +68,32 @@ const LocationMarker: React.FC<ILocationMarker> = (props) => {
         const coordinates = data.features[0].geometry.coordinates.map(
           (coord) => new L.LatLng(coord[1], coord[0])
         );
+
+        // get distance
+        const distance = data.features[0].properties.segments[0].distance;
+        setTotalDistance(distance);
+
+        // Get and set route instructions
+        const instructions = data.features[0].properties.segments[0].steps.map(
+          (step) => step.instruction
+        );
+        setRouteInstructions(instructions);
+
         setRouteCoordinates(coordinates);
       })
       .catch((error) => {
         console.error("Error fetching route:", error);
+        cleanUp();
       });
   };
 
   return (
     <>
       {position && (
-        <Marker position={position} icon={icon}>
+        <Marker
+          position={position}
+          icon={icon}
+        >
           <Popup>
             You are here. <br />
           </Popup>

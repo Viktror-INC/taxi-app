@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 export const MainWrap = styled.div`
   width: 100%;
 `;
-export const MainPopup = styled.div`
+export const MainPopup = styled.div<{ height?: string }>`
   background-color: ${colors.blue[500]};
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -14,7 +14,8 @@ export const MainPopup = styled.div`
   flex-direction: column;
   bottom: 0;
   z-index: 1000;
-  height: 200px;
+  transition: all 0.3s linear;
+  height: ${(props) => (props.height ? `${props.height}` : "35%")};
 `;
 
 export const BlueBorder = styled.div`
@@ -28,12 +29,17 @@ export const BlueBorder = styled.div`
 `;
 
 export const MainPopupBody = styled.div`
+  width: 100%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   padding-top: 10px;
   background-color: ${colors.white[1000]};
   height: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  padding: 0 10px;
 `;
 
 export const MainLine = styled.div`
@@ -41,6 +47,39 @@ export const MainLine = styled.div`
   height: 2px;
   width: 30px;
   display: flex;
-  margin: 0 auto;
+  margin: 10px 0 0;
   background-color: ${colors.grey[300]};
+`;
+
+export const MainDistance = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  width: 100%;
+`;
+
+export const RouteWrap = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+`;
+
+export const RouteWithScroll = styled.ul`
+  width: 100%;
+  transition: all 0.3s linear;
+  height: 120px;
+  overflow: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  align-items: center;
+  list-style: none;
+
+  li {
+    border-bottom: 1px solid black;
+    width: 100%;
+  }
 `;
