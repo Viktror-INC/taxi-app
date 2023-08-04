@@ -79,7 +79,7 @@ export const RouteWithScroll = styled.ul`
   list-style: none;
 
   li {
-    border-bottom: 1px solid black;
     width: 100%;
+    font-size: 14px;
   }
 `;

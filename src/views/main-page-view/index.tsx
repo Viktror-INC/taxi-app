@@ -141,7 +141,7 @@ const MainPageView = () => {
                 <span>Маршрут:</span>
                 <RouteWithScroll>
                   {routeInstructions.map((route, index) => (
-                    <li key={`${route}_${index}`}>{route}</li>
+                    <li key={`${route}_${index}`}>{index+1}. {route}</li>
                   ))}
                 </RouteWithScroll>
               </RouteWrap>
