@@ -69,7 +69,7 @@ export const RouteWrap = styled.div`
 export const RouteWithScroll = styled.ul`
   width: 100%;
   transition: all 0.3s linear;
-  height: 120px;
+  height: 160px;
   overflow: scroll;
   overflow-x: hidden;
   display: flex;

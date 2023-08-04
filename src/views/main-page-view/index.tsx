@@ -18,18 +18,21 @@ const MapWithNoSSR = dynamic(() => import("./map"), {
   ssr: false,
 });
 
+
+
 const MainPageView = () => {
   const [position, setPosition] = useState<LatLng | null>(null);
   const [totalDistance, setTotalDistance] = useState(0);
   const [secondPosition, setSecondPosition] = useState<LatLng | null>(null);
   const [routeCoordinates, setRouteCoordinates] = useState<LatLng[]>([]);
   const [routeInstructions, setRouteInstructions] = useState<string[]>([]);
-  const distanceInKilometers = totalDistance / 1000; // Convert meters to kilometers
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [defaultPopupHeight, setDefaultPopupHeight] = useState("0");
   const [time, setTime] = useState(0);
   const center = { lat: 50.450001, lng: 30.523333 };
+  const distanceInKilometers = totalDistance / 1000; // Convert meters to kilometers
+
 
   const cleanUp = () => {
     setRouteCoordinates([]);
@@ -72,7 +75,7 @@ const MainPageView = () => {
   };
 
   const getSecondPosition = (latlng: LatLng) => {
-    setDefaultPopupHeight("35%");
+    setDefaultPopupHeight("40%");
     setSecondPosition(latlng);
   };
 
