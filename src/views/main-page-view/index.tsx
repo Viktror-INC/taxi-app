@@ -64,7 +64,7 @@ const MainPageView = () => {
     const isSwipeDown = distance < -minSwipeDistance;
 
     if (isSwipeUp) {
-      setDefaultPopupHeight("35%");
+      setDefaultPopupHeight("40%");
     } else if (isSwipeDown) {
       setDefaultPopupHeight("5%");
     }
